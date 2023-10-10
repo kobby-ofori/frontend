@@ -1,0 +1,27 @@
+.card-wrapper {
+}
+.custom-card {
+  border: none;
+  font-family: "Times New Roman", Times, serif;
+  background-color: transparent;
+  cursor: pointer;
+  padding-right: 2rem;
+  margin-top: 2rem;
+}
+.custom-card .custom-img {
+  border-radius: 25px;
+}
+.custom-img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.custom-img {
+  transition: transform 0.2s;
+}
+.custom-card-body:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.custom-card-body {
+  transition: transform 0.2s;
+}
