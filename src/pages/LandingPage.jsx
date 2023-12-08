@@ -17,9 +17,11 @@ const LandingPage = () => {
       <Row>
         <Col>
           <p className="text-center hero-text">
-            Start selling online. Open an online store with as little as 1$.{" "}
-            <a href="iii">Click for more Info...<FiExternalLink/></a>
-            
+            Start selling online. Open an online store with as little as $1.{" "}
+            <span style={{color:'blue', cursor:'pointer'}} onClick={() => navigate("infosection")}>
+              Click for more Info...
+              <FiExternalLink />
+            </span>
           </p>
         </Col>
       </Row>
@@ -202,9 +204,9 @@ const LandingPage = () => {
           <p>Copyright &copy; 2023 Roots Inc. All rights reserved.</p>
         </Col>
         <Col md="auto">
-          <a href="jjj">
+          <a href="/infosection">
             <h6>
-              Privacy Policy<span className="vertical-line"></span> Terms of Use
+              Privacy Policy<span  className="vertical-line"></span> Terms of Use
               <span className="vertical-line"></span> Sales and Refunds
               <span className="vertical-line"></span> Legal
               <span className="vertical-line"></span> Site Map

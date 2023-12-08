@@ -4,6 +4,8 @@ import { HiSaveAs } from "react-icons/hi";
 import axios from "axios"; // Import Axios
 import { postURL } from "../utils/constant"; // Import your API endpoint URL
 import ProductsList from "../components/ProductsList";
+//import useAuthContext for user
+// import {useAuthContext} from "../hooks/useAuthContext"
 
 const PostProduct = () => {
   const [name, setSellerName] = useState(""); // State for the trader name
@@ -13,9 +15,19 @@ const PostProduct = () => {
   const [productImage, setProductImage] = useState(null); // State for the product image file
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
+  // new code
+  // const {user} = useAuthContext()
+  //end of new code
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    //new code
+    // if (!user) {
+    //   setErrorMessage('You must be logged in')
+    //   return
+    // }
+    //end of new code
 
     try {
       const formData = new FormData();
@@ -26,6 +38,7 @@ const PostProduct = () => {
       formData.append("image", productImage);
 
       // Send a POST request to your server with the form data
+      // new code after await axios.post(`${postURL}`and before }, formData
       await axios.post(`${postURL}`, formData);
 
       // Display a success message

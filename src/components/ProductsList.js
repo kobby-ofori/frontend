@@ -3,6 +3,8 @@ import { Container, Row, Button, Modal, Alert } from "react-bootstrap";
 import axios from "axios";
 import { baseURL } from "../utils/constant";
 import ProductMethods from "./ProductMethods";
+// new import
+// import { useAuthContext } from "../hooks/useAuthContext";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
@@ -10,6 +12,9 @@ const ProductsList = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [successAlert, setSuccessAlert] = useState(false);
   const [errorAlert, setErrorAlert] = useState(false);
+  // new code
+  // const {user} = useAuthContext
+  // end of new code
 
   useEffect(() => {
     // Fetch products from your API
@@ -24,11 +29,18 @@ const ProductsList = () => {
   }, []);
 
   const handleDelete = (productId) => {
+    //new code
+    // if (!user) {
+    //   return
+    // }
+    //end of new code
+
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this product?"
     );
     if (confirmDelete) {
       // Send a DELETE request to your API to delete the product
+      //new code after .delete(`${baseURL}/${productId}` 
       axios
         .delete(`${baseURL}/${productId}`)
         .then((response) => {

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { PaystackButton } from "react-paystack";
 import "./CheckoutModal.css";
+import 'react-phone-number-input/style.css'
+// import PhoneInput from "react-phone-number-input"
+import PhoneInputWithCountrySelect from "react-phone-number-input";
 
 const CheckoutModal = ({ show, handleShow, handleClose, totalAmount }) => {
   const publicKey = "pk_test_07c26cdf8175455e2aaf0daba06a989d80e76f09";
@@ -32,7 +35,7 @@ const CheckoutModal = ({ show, handleShow, handleClose, totalAmount }) => {
           closeButton
           style={{ backgroundColor: "rgb(211, 165, 165)" }}
         >
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Checkout</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ backgroundColor: "rgb(211, 165, 165)" }}>
           <div className="checkout-form">
@@ -57,12 +60,17 @@ const CheckoutModal = ({ show, handleShow, handleClose, totalAmount }) => {
             </div>
             <div className="checkout-field">
               <label>Phone</label>
-              <input
-                type="text"
+              <PhoneInputWithCountrySelect
+                id="phone"
+                value={phone}
+                onChange={(value) => setPhone(value)}
+              />
+              {/* <input
+                type="phone"
                 id="phone"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-              />
+              /> */}
             </div>
             <PaystackButton className="paystack-button" {...componentProps} />
           </div>

@@ -1,56 +1,27 @@
-import React, { useState } from "react";
-import { Card, Carousel, Col, Container, Row } from "react-bootstrap";
+import React from "react";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import "./Store.css";
 import Product from "./Product";
 import Footer from "../components/Footer";
 import paymentmethod from "../images/paymentmethod.png";
 import laptop from "../images/laptop.png";
 import fastdelivery from "../images/fastdelivery.png";
+// import CarouselFadeExample from "../components/Swiper";
+import CarouselFade from "../components/Carousel";
 import shopping from "../images/shopping.jpg";
-import shopping1 from "../images/shopping1.jpg";
-import shopping2 from "../images/shopping2.jpg";
+import sliderpicn1 from "../images/sliderpicn1.jpg";
+import sliderpicn2 from "../images/sliderpicn2.jpg";
 
 const Store = () => {
-  const [index, setIndex] = useState(0);
-
-  const handleSelect = (selectedIndex) => {
-    setIndex(selectedIndex);
-  };
   return (
-    <Container className="Store-container shop">
-      <Row>
-        <Col sm={8}>
-          <Carousel activeIndex={index} onSelect={handleSelect} style={{paddingTop:"30px"}}>
-            <Carousel.Item>
-              <img src={shopping} alt="" height={"100%"} width={"100%"} />
-              <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>
-                  Nulla vitae elit libero, a pharetra augue mollis interdum.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src={shopping1} alt="" height={"487ypx"} width={"100%"} />
-              <Carousel.Caption>
-                <h3>Second slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src={shopping2} alt="" height={"487ypx"} width={"100%"} />
-              <Carousel.Caption>
-                <h3>Third slide label</h3>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
-        </Col>
-        <Col sm={4}>sm=4</Col>
+    <div>
+    <Container fluid>
+    <Row>
+      <CarouselFade image1={shopping} image2={sliderpicn1} image3={sliderpicn2} height={"500px"} />
       </Row>
+    </Container>
+    <Container className="Store-container shop">
+      
       <Row>
         <div className="Store-product">
           <Product />
@@ -106,6 +77,7 @@ const Store = () => {
         <Footer />
       </Row>
     </Container>
+    </div>
   );
 };
 

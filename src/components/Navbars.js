@@ -4,15 +4,25 @@ import { Badge, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import shoppingCart from "../images/shoppingCart.png";
 import { CartContext } from "../context/CartContext";
+import { useLogout } from "../hooks/useLogout";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 // import onlineShopping from "../images/onlineShopping.png";
 
 const Navbars = () => {
-
- 
   const { cartItems } = useContext(CartContext);
   // Calculate the total number of items in the cart
-  const totalCartItems = Object.values(cartItems).reduce((total, amount) => total + amount, 0);
+  const totalCartItems = Object.values(cartItems).reduce(
+    (total, amount) => total + amount,
+    0
+  );
+
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
+
+  const handleClick = () => {
+    logout();
+  };
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary" sticky="top">
@@ -40,6 +50,19 @@ const Navbars = () => {
               Info-Section
             </Link>
           </Nav.Link>
+          {user && (
+            <div>
+              <span className="user-email">{user.email}</span>
+              <button className="logout-button" onClick={handleClick}>Log out</button>
+            </div>
+          )}
+          {!user && (
+            <div>
+              <Link to="/login" className="nav-link-text">
+                Login/ Signup
+              </Link>
+            </div>
+          )}
           <NavDropdown
             title="User-activities"
             id="basic-nav-dropdown"
@@ -48,22 +71,6 @@ const Navbars = () => {
             <NavDropdown.Item href="#action/3.1">
               <Link to="/post" className="nav-link-text">
                 Post
-              </Link>
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              <Link to="/put" className="nav-link-text">
-                Put
-              </Link>
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">
-              <Link to="description" className="nav-link-text">
-                See your products
-              </Link>
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              <Link to="/delete" className="nav-link-text">
-                Delete
               </Link>
             </NavDropdown.Item>
           </NavDropdown>
